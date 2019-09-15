@@ -1,0 +1,11 @@
+<h2>Create new Gateway</h2>
+<br />
+<br />
+<div class="alert alert-danger" role="alert" *ngIf="error">
+    {{ error.error.message }}
+</div>
+<app-gateway-form
+  [creating]="true"
+  (onSave)="save($event)"
+>
+</app-gateway-form>

@@ -1,0 +1,25 @@
+<h2>List of devices</h2>
+<br />
+<br />
+<a type="button" class="btn btn-primary" [routerLink]="['create']">Create new</a>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <th>UID</th>
+    <th>Vendor</th>
+    <th>Online</th>
+    <th>Created at</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let device of devices; let i = index"  id="{{ device._id }}">
+        <td>{{ device.uid }}</td>
+        <td>{{ device.vendor }}</td>
+        <td>{{ device.online ? 'Yes' : 'No' }}</td>
+        <td>{{ device.created_date }}</td>
+        <td>
+            <button type="button" class="btn btn-light" (click)="showDeviceDetails(device._id)">Details</button>
+            <button type="button" class="btn btn-light" (click)="deleteDevice(device._id)">Delete</button>
+        </td>
+    </tr>
+  </tbody>
+</table>

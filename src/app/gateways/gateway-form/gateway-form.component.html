@@ -1,0 +1,35 @@
+<form [formGroup]="gatewayForm" novalidate>
+    <div class="form-group">
+      <label for="serialNumber">Serial Number:</label>
+      <input formControlName="serialNumber" type="text" class="form-control" id="serialNumber" />
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input formControlName="name" type="text" class="form-control" id="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="ip">IP Address</label>
+      <input formControlName="ip" type="text" class="form-control" id="ip" />
+    </div>
+    <div class="form-group" *ngIf="gateway">
+      <label for="devices">Devices</label>
+      <button type="button" class="btn btn-primary" (click)="linkDevice()">Associate new device</button>
+      <div *ngFor="let device of gateway.devices; let i = index" class="row">
+        <div class="col-md-10">
+          <select id="deviceSelect" #deviceSelect class="form-control" (change)="setDevice($event, i)">
+            <option value="">Select device...</option>
+            <option value="{{_device._id}}" *ngFor="let _device of devices" [selected]="_device._id === device._id">{{ _device.vendor }}</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-light" (click)="unlinkDevice(i)">Unlink</button> 
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" (click)="save()">Guardar</button>
+      <button type="button" class="btn btn-light" (click)="cancel()">Cancelar</button>
+    </div>
+
+</form>

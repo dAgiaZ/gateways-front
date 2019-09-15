@@ -1,0 +1,25 @@
+  <h2>List of gateways</h2>
+  <br />
+  <br />
+  <a type="button" class="btn btn-primary" [routerLink]="['create']">Create new</a>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <th>Serial Number</th>
+      <th>Name</th>
+      <th>IP Address</th>
+      <th>Number of devices</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gateway of gateways; let i = index"  id="{{ gateway._id }}">
+          <td>{{ gateway.serialNumber }}</td>
+          <td>{{ gateway.name }}</td>
+          <td>{{ gateway.ip }}</td>
+          <td>{{ gateway.devices.length }}</td>
+          <td>
+              <button type="button" class="btn btn-light" (click)="showGatewayDetails(gateway._id)">Details</button>
+              <button type="button" class="btn btn-light" (click)="deleteGateway(gateway._id)">Delete</button>
+          </td>
+      </tr>
+    </tbody>
+  </table>

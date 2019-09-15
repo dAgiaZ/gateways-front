@@ -1,0 +1,11 @@
+<h2>Edit Device</h2>
+<br />
+<br />
+<div class="alert alert-danger" role="alert" *ngIf="error">
+    {{ error.error.message }}
+</div>
+<app-device-form
+  [creating]="false"
+  (onSave)="save($event)"
+>
+</app-device-form>

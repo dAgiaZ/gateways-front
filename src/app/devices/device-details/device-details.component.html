@@ -1,0 +1,10 @@
+<h2>Device Details</h2>
+<br />
+<br />
+<button type="button" class="btn btn-primary" [routerLink]="['edit']">Edit</button>
+<section *ngIf="device">
+  <strong>UID:</strong><span>{{ device.uid }}</span><br />
+  <strong>Vendor:</strong><span>{{ device.vendor }}</span><br />
+  <strong>Online:</strong><span>{{ device.online ? 'Yes' : 'No' }}</span><br />
+  <strong>Created at:</strong><span>{{ device.created_date }}</span><br />
+</section>
