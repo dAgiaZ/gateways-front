@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { GatewaysService } from '../../shared/services/gateways.service'
-import { find } from 'rxjs/operators';
 
 
 @Component({
@@ -65,10 +64,12 @@ export class GatewayFormComponent implements OnInit {
   save(): void {
       if (this.gatewayForm.valid){
         //Delete empty objects
-        this.gateway.devices.map( (el, i) => {
-          if (!el._id)
-            this.gateway.devices.splice(i,1);
-        })
+        if (this.gateway && this.gateway.devices) {
+          this.gateway.devices.map( (el, i) => {
+            if (!el._id)
+              this.gateway.devices.splice(i,1);
+          })
+        }
         this.onSave.emit(this.gatewayForm.value);
       }
   }
